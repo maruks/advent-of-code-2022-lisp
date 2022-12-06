@@ -17,6 +17,7 @@
 (defun run ()
   (day 1 "Calorie Counting")
   (day 2 "Rock Paper Scissors")
+  (day 3 "Rucksack Reorganization")
   )
 
 (defun main ()
