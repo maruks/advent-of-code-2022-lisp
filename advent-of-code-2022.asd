@@ -14,6 +14,8 @@
   :components ((:module "src"
 		:components ((:file "advent-of-code")
 			     (:file "day-1")
+			     (:file "day-2")
+			     (:file "day-3")
 			     (:file "main"))))
   :in-order-to ((test-op (test-op "advent-of-code-2022/tests"))))
 
@@ -25,5 +27,8 @@
 	       :assert-p)
   :serial t
   :components ((:module "tests"
-		:components ((:file "day-1-tests"))))
-  :perform (test-op (o c) (symbol-call 'cacau 'run :colorful t :reporter :list)))
+		:components ((:file "day-1-tests")
+			     (:file "day-2-tests")
+			     (:file "day-3-tests")
+			     )))
+  :perform (test-op (o c) (symbol-call 'cacau 'run :colorful nil :reporter :list)))
