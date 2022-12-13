@@ -24,7 +24,7 @@
 	  (t (find-top top-3 (+ h prev) r)))))
 
 (defun solution-1 ()
-  (->> (map-fn 'integer (lambda (s) (if (blankp s) 0 (parse-integer s))) (scan-file (resource-file "day-1-input.txt") #'read-line))
+  (->> (read-input)
        (collecting-fn 'integer (lambda () 0) (lambda (s elem) (if (zerop elem) elem (+ s elem))))
        (collect-max)))
 

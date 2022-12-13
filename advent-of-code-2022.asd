@@ -6,7 +6,7 @@
   :license "Public license"
   :version "0.0.1"
   :serial t
-  :depends-on (:series :rutils :alexandria)
+  :depends-on (:series :rutils :alexandria :arrows)
   :build-operation "program-op"
   :build-pathname "advent-of-code"
   :entry-point "main:main"
@@ -16,6 +16,8 @@
 			     (:file "day-1")
 			     (:file "day-2")
 			     (:file "day-3")
+			     (:file "day-4")
+			     (:file "day-5")
 			     (:file "main"))))
   :in-order-to ((test-op (test-op "advent-of-code-2022/tests"))))
 
@@ -30,5 +32,7 @@
 		:components ((:file "day-1-tests")
 			     (:file "day-2-tests")
 			     (:file "day-3-tests")
+			     (:file "day-4-tests")
+			     (:file "day-5-tests")
 			     )))
   :perform (test-op (o c) (symbol-call 'cacau 'run :colorful nil :reporter :list)))

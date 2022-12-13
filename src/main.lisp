@@ -18,6 +18,7 @@
   (day 1 "Calorie Counting")
   (day 2 "Rock Paper Scissors")
   (day 3 "Rucksack Reorganization")
+  (day 4 "Camp Cleanup")
   )
 
 (defun main ()
