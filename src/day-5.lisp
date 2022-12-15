@@ -44,7 +44,7 @@
        (map-fn t #'->procedure <>)))
 
 (defun move-crate (crates num from to)
-  (when (< 0 num)
+  (when (plusp num)
     (push (pop (aref crates (1- from))) (aref crates (1- to)))
     (move-crate crates (1- num) from to)))
 

@@ -18,6 +18,7 @@
 			     (:file "day-3")
 			     (:file "day-4")
 			     (:file "day-5")
+			     (:file "day-6")
 			     (:file "main"))))
   :in-order-to ((test-op (test-op "advent-of-code-2022/tests"))))
 
@@ -34,5 +35,6 @@
 			     (:file "day-3-tests")
 			     (:file "day-4-tests")
 			     (:file "day-5-tests")
+			     (:file "day-6-tests")
 			     )))
   :perform (test-op (o c) (symbol-call 'cacau 'run :colorful nil :reporter :list)))

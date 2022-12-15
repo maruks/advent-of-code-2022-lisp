@@ -19,6 +19,8 @@
   (day 2 "Rock Paper Scissors")
   (day 3 "Rucksack Reorganization")
   (day 4 "Camp Cleanup")
+  (day 5 "Supply Stacks")
+  (day 6 "Tuning Trouble")
   )
 
 (defun main ()
