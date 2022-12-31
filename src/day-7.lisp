@@ -71,7 +71,7 @@
     (reduce #'+ d-sizes :initial-value (if (>= 100000 size) size 0))))
 
 (defun dir-sizes (tree)
-  (cons (node-size tree) (mappend (compose #'dir-sizes #'cdr) (node-children tree))))
+  (cons (node-size tree) (mapcan (compose #'dir-sizes #'cdr) (node-children tree))))
 
 (defun smallest-directory-to-delete (tree)
   (let* ((total (node-size tree))
