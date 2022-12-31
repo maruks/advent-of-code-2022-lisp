@@ -1,13 +1,12 @@
 (defpackage #:advent-of-code
   (:use #:cl #:uiop/stream)
   (:nicknames #:aoc)
-  (:export #:read-lines #:resource-file))
+  (:export #:read-lines #:resource-file #:λ))
 
 (in-package :advent-of-code)
 
-(defmacro λ (&whole whole args &body body)
-  (declare (ignore args body))
-  (cons 'lambda (cdr whole)))
+(defmacro λ (&body body)
+  (cons 'lambda body))
 
 (defun resource-file (p)
   (let ((resources (load-time-value (asdf/system:system-relative-pathname :advent-of-code-2022 "resources/"))))

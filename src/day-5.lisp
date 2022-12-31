@@ -1,12 +1,8 @@
 (defpackage #:day-5
-  (:use #:cl #:aoc #:series #:rutils #:arrows)
-  (:shadowing-import-from #:rutils.sequence "SPLIT-IF" "SPLIT")
-  (:shadowing-import-from #:rutils.misc "->" "->>")
+  (:use #:cl #:aoc #:series #:arrows)
   (:export #:solution-1 #:solution-2))
 
 (in-package #:day-5)
-
-(named-readtables:in-readtable rutils-readtable)
 
 ;; [P]     [C]         [M]
 ;; [D]     [P] [B]     [V] [S]
@@ -32,7 +28,7 @@
     array))
 
 (defun ->procedure (s)
-  (destructuring-bind (_1 num _2 from _3 to) (split-string s)
+  (destructuring-bind (_1 num _2 from _3 to) (str:split " " s)
     (declare (ignore _1 _2 _3))
     (mapcar #'parse-integer (list num from to))))
 
@@ -40,7 +36,7 @@
   (declare (optimizable-series-function))
   (-<> "day-5-input.txt"
        (resource-file)
-       (scan-file  #'read-line)
+       (scan-file #'read-line)
        (map-fn t #'->procedure <>)))
 
 (defun move-crate (crates num from to)
@@ -59,7 +55,7 @@
 (series::defun move-all-crates (stream)
   (declare (optimizable-series-function))
   (->> stream
-       (collecting-fn t #'initial-crates (lambda (crates procedure)
+       (collecting-fn t #'initial-crates (λ (crates procedure)
 					   (apply *move-fn* (cons crates procedure))
 					   crates))
        (collect)))
@@ -71,7 +67,7 @@
   (-<> crates
        (coerce 'list)
        (mapcar #'car <>)
-       (coerce'string)))
+       (coerce 'string)))
 
 (defun solution-1 ()
   (->> (read-input)

@@ -1,14 +1,12 @@
 (defpackage #:day-4
-  (:use #:cl #:aoc #:series #:rutils)
-  (:shadowing-import-from #:rutils.sequence "SPLIT-IF" "SPLIT")
+  (:use #:cl #:aoc #:series #:split-sequence #:arrows)
   (:export #:solution-1 #:solution-2))
 
 (in-package #:day-4)
 
-(named-readtables:in-readtable rutils-readtable)
-
 (defun ->range (s)
-  (destructuring-bind (a b c d) (split-sequence-if ^(or (char= % #\-) (char= % #\,)) s)
+  (destructuring-bind (a b c d) (split-sequence-if (λ (e) (or (char= e #\-)
+							      (char= e #\,))) s)
     (->> (list a b c d)
 	 (mapcar #'parse-integer))))
 

@@ -21,6 +21,7 @@
   (day 4 "Camp Cleanup")
   (day 5 "Supply Stacks")
   (day 6 "Tuning Trouble")
+  (day 7 "No Space Left On Device")
   )
 
 (defun main ()

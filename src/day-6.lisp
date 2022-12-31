@@ -1,7 +1,5 @@
 (defpackage #:day-6
-  (:use #:cl #:aoc #:series #:rutils #:arrows)
-  (:shadowing-import-from #:rutils.sequence "SPLIT-IF" "SPLIT")
-  (:shadowing-import-from #:rutils.misc "->" "->>")
+  (:use #:cl #:aoc #:series #:arrows)
   (:export #:solution-1 #:solution-2))
 
 (in-package #:day-6)

@@ -1,18 +1,12 @@
 (defpackage #:day-3
-  (:use #:cl #:aoc #:series #:rutils)
-  (:shadowing-import-from #:rutils.sequence "SPLIT-IF" "SPLIT")
+  (:use #:cl #:aoc #:series #:arrows #:alexandria)
   (:export #:solution-1 #:solution-2))
 
 (in-package #:day-3)
 
-(named-readtables:in-readtable rutils-readtable)
-
-(defun ->hash-set (s)
-  (apply #'hash-set 'eql (coerce s 'list)))
-
 (defun split-in-half (s)
   (let ((l (truncate (length s) 2)))
-    (pair (substr s 0 l) (substr s l))))
+    (cons (str:substring 0 l s) (str:substring l t s))))
 
 (defun ->priority (c)
   (let ((code (char-code c)))
@@ -20,14 +14,17 @@
 	(- code 38)
 	(- code 96))))
 
+(defun unique-items (s)
+  (remove-duplicates (coerce s 'list)))
+
 (defun ->item (s)
-  (with-pair (l r) (split-in-half s)
-    (car (hash-table-keys (inter# (->hash-set l) (->hash-set r))))))
+  (destructuring-bind (l . r) (split-in-half s)
+    (car (intersection (unique-items l) (unique-items r)))))
 
 (series::defun sum-of-priorities (stream)
   (declare (optimizable-series-function))
   (->> stream
-       (map-fn 'integer (=> ->priority ->item))
+       (map-fn 'integer (compose #'->priority #'->item))
        (collect-sum)))
 
 (defun solution-1 ()
@@ -38,11 +35,10 @@
   (declare (optimizable-series-function))
   (declare (off-line-port xs))
   (series::multiple-value-bind (a b c) (chunk 3 3 xs)
-    (->> (map-fn 'integer (lambda (a b c)
+    (->> (map-fn 'integer (λ (a b c)
 			    (->> (list a b c)
-				 (mapcar #'->hash-set)
-				 (reduce #'inter#)
-				 (hash-table-keys)
+				 (mapcar #'unique-items)
+				 (reduce #'intersection)
 				 (car)
 				 ->priority)) a b c)
 	 (collect-sum))))
