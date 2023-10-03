@@ -22,6 +22,7 @@
   (day 5 "Supply Stacks")
   (day 6 "Tuning Trouble")
   (day 7 "No Space Left On Device")
+  (day 8 "Treetop Tree House")
   )
 
 (defun main ()
