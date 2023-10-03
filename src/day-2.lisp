@@ -4,6 +4,9 @@
 
 (in-package #:day-2)
 
+(eval-when (:execute :load-toplevel :compile-toplevel)
+  (series::install :macro t :shadow nil))
+
 ;; A for Rock, B for Paper, and C for Scissors
 ;; X for Rock, Y for Paper, and Z for Scissors.
 (defparameter *draw* (alist-hash-table '((:A . :X)
@@ -40,7 +43,7 @@
 (series::defun total-score (stream)
   (declare (optimizable-series-function))
   (->> stream
-       (map-fn 'integer #'->score)
+       (#M->score)
        (collect-sum)))
 
 (series::defun choose-shape (stream)

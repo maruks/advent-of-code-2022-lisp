@@ -5,6 +5,6 @@
 
 (defsuite :day-4 ()
   (deftest "solution-1" ()
-    (eq-p (solution-1) 511))
+    (eq-p (solution-1) 528))
   (deftest "solution-2" ()
-    (eq-p (solution-2) 821)))
+    (eq-p (solution-2) 881)))

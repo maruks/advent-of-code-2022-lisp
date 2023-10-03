@@ -5,6 +5,6 @@
 
 (defsuite :day-5 ()
   (deftest "solution-1" ()
-    (equal-p "JDTMRWCQJ" (solution-1)))
+    (equal-p (solution-1) "JCMHLVGMG"))
   (deftest "solution-2" ()
-    (equal-p "VHJDDCWRD" (solution-2))))
+    (equal-p (solution-2) "LVMRWSSPZ")))

@@ -20,6 +20,7 @@
 			     (:file "day-5")
 			     (:file "day-6")
 			     (:file "day-7")
+			     (:file "day-8")
 			     (:file "main"))))
   :in-order-to ((test-op (test-op "advent-of-code-2022/tests"))))
 
@@ -28,6 +29,7 @@
   :depends-on (:advent-of-code-2022
 	       :cacau
 	       :alexandria
+	       :series
 	       :assert-p)
   :serial t
   :components ((:module "tests"
@@ -38,5 +40,6 @@
 			     (:file "day-5-tests")
 			     (:file "day-6-tests")
 			     (:file "day-7-tests")
+			     (:file "day-8-tests")
 			     )))
   :perform (test-op (o c) (symbol-call 'cacau 'run :colorful t :reporter :list)))

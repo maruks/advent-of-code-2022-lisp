@@ -5,8 +5,8 @@
 
 (defsuite :day-1 ()
   (deftest "insert-if-bigger" ()
-    (equal-p '(6 7 8) (day-1::insert-if-bigger '(3 6 8) 7)))
+    (equal-p (day-1::insert-if-bigger '(3 6 8) 7) '(6 7 8)))
   (deftest "solution 1" ()
-    (eql-p 68802 (solution-1)))
+    (eql-p (solution-1) 70720))
   (deftest "solution 2" ()
-    (eql-p 205370 (solution-2))))
+    (eql-p (solution-2) 207148)))

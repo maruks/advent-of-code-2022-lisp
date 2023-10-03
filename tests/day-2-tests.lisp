@@ -7,6 +7,6 @@
   (deftest "total-score" ()
     (eq-p (day-2::total-score (day-2::parse-input (scan '("A Y" "B X" "C Z")))) 15))
   (deftest "solution-1" ()
-    (eq-p (solution-1) 12586))
+    (eq-p (solution-1) 13526))
   (deftest "solution-2" ()
-    (eq-p (solution-2) 13193)))
+    (eq-p (solution-2) 14204)))

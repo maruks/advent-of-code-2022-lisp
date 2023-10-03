@@ -21,10 +21,11 @@
 (series::defun find-14-character-marker (stream)
   (declare (optimizable-series-function))
   (declare (off-line-port stream))
-  (->> (mapping (((a b c d e f g h i j k l m n) (chunk 14 1 stream)))
-		(char/= a b c d e f g h i j k l m n))
-       (until-if #'identity)
-       (collect-length)))
+  (->>
+   (mapping (((a b c d e f g h i j k l m n) (chunk 14 1 stream)))
+	    (char/= a b c d e f g h i j k l m n))
+   (until-if #'identity)
+   (collect-length)))
 
 (defun solution-1 ()
   (->> (read-input)

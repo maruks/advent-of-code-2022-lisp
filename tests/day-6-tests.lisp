@@ -5,6 +5,6 @@
 
 (defsuite :day-6 ()
   (deftest "solution-1" ()
-    (eql-p 1892 (solution-1)))
+    (eql-p (solution-1) 1766))
   (deftest "solution-2" ()
-    (eql-p 2313 (solution-2))))
+    (eql-p (solution-2) 2383)))

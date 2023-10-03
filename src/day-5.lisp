@@ -4,27 +4,30 @@
 
 (in-package #:day-5)
 
-;; [P]     [C]         [M]
-;; [D]     [P] [B]     [V] [S]
-;; [Q] [V] [R] [V]     [G] [B]
-;; [R] [W] [G] [J]     [T] [M]     [V]
-;; [V] [Q] [Q] [F] [C] [N] [V]     [W]
-;; [B] [Z] [Z] [H] [L] [P] [L] [J] [N]
-;; [H] [D] [L] [D] [W] [R] [R] [P] [C]
-;; [F] [L] [H] [R] [Z] [J] [J] [D] [D]
+(eval-when (:execute :load-toplevel :compile-toplevel)
+  (series::install :macro t :shadow nil))
+
+;;     [W]         [J]     [J]
+;;     [V]     [F] [F] [S] [S]
+;;     [S] [M] [R] [W] [M] [C]
+;;     [M] [G] [W] [S] [F] [G]     [C]
+;; [W] [P] [S] [M] [H] [N] [F]     [L]
+;; [R] [H] [T] [D] [L] [D] [D] [B] [W]
+;; [T] [C] [L] [H] [Q] [J] [B] [T] [N]
+;; [G] [G] [C] [J] [P] [P] [Z] [R] [H]
 ;;  1   2   3   4   5   6   7   8   9
 
 (defun initial-crates ()
   (let ((array (make-array '(9))))
-    (setf (aref array 0) (coerce "PDQRVBHF" 'list))
-    (setf (aref array 1) (coerce "VWQZDL" 'list))
-    (setf (aref array 2) (coerce "CPRGQZLH" 'list))
-    (setf (aref array 3) (coerce "BVJFHDR" 'list))
-    (setf (aref array 4) (coerce "CLWZ " 'list))
-    (setf (aref array 5) (coerce "MVGTNPRJ" 'list))
-    (setf (aref array 6) (coerce "SBMVLRJ" 'list))
-    (setf (aref array 7) (coerce "JPD" 'list))
-    (setf (aref array 8) (coerce "VWNCD" 'list))
+    (setf (aref array 0) (coerce "WRTG" 'list))
+    (setf (aref array 1) (coerce "WVSMPHCG" 'list))
+    (setf (aref array 2) (coerce "MGSTLC" 'list))
+    (setf (aref array 3) (coerce "FRWMDHJ" 'list))
+    (setf (aref array 4) (coerce "JFWSHLQP" 'list))
+    (setf (aref array 5) (coerce "SMFNDJP" 'list))
+    (setf (aref array 6) (coerce "JSCGFDBZ" 'list))
+    (setf (aref array 7) (coerce "BTR" 'list))
+    (setf (aref array 8) (coerce "CLWNH" 'list))
     array))
 
 (defun ->procedure (s)
@@ -37,7 +40,7 @@
   (-<> "day-5-input.txt"
        (resource-file)
        (scan-file #'read-line)
-       (map-fn t #'->procedure <>)))
+       (#M->procedure <>)))
 
 (defun move-crate (crates num from to)
   (when (plusp num)
