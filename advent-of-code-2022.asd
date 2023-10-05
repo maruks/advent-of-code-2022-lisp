@@ -6,7 +6,7 @@
   :license "Public license"
   :version "0.0.1"
   :serial t
-  :depends-on (:series :str :alexandria :arrows :split-sequence)
+  :depends-on (:series :str :alexandria :arrows :split-sequence :hash-set)
   :build-operation "program-op"
   :build-pathname "advent-of-code"
   :entry-point "main:main"
@@ -21,6 +21,7 @@
 			     (:file "day-6")
 			     (:file "day-7")
 			     (:file "day-8")
+			     (:file "day-9")
 			     (:file "main"))))
   :in-order-to ((test-op (test-op "advent-of-code-2022/tests"))))
 
@@ -41,5 +42,6 @@
 			     (:file "day-6-tests")
 			     (:file "day-7-tests")
 			     (:file "day-8-tests")
+			     (:file "day-9-tests")
 			     )))
   :perform (test-op (o c) (symbol-call 'cacau 'run :colorful t :reporter :list)))

@@ -7,14 +7,16 @@
 (eval-when (:execute :load-toplevel :compile-toplevel)
   (series::install :macro t :shadow nil))
 
-(defparameter *map-size* 99)
+(define-constant +default-map-size+ 99)
+
+(defparameter *map-size* +default-map-size+)
 
 (defun read-input (filename map-size)
   (-<> filename
       (resource-file)
       (scan-file #'read-char)
       (choose-if #'digit-char-p <>)
-      (map-fn 'fixnum (λ (c) (- (char-code c) 48)) <>)
+      (map-fn 'fixnum (λ (c) (- (char-code c) (char-code #\0))) <>)
       (collect `(vector * ,(* map-size map-size)) <>)))
 
 (defun ->index (x y)
@@ -42,13 +44,15 @@
 
 (series::defun visible-trees (xs arr)
   (declare (optimizable-series-function))
-  (cdr (collect-fn 'list (constantly (list -1))
+  (->> xs
+       (collect-fn 'list (constantly (list -1))
 		   (lambda (results index)
 		     (destructuring-bind (max &rest rs) results
 		       (let ((height (aref arr index)))
 			 (if (> height max)
 			     (cons height (cons index rs))
-			     (cons max rs))))) xs)))
+			     (cons max rs))))))
+       (cdr)))
 
 (defun count-unique (xs &optional (prev -1) (result 0))
   (if (null xs)
@@ -69,8 +73,8 @@
      (count-unique))))
 
 (defun solution-1 ()
-  (-> (read-input "day-8-input.txt" 99)
-      (all-visible-trees 99)))
+  (-> (read-input "day-8-input.txt" +default-map-size+)
+      (all-visible-trees +default-map-size+)))
 
 (defun scenic-score (x y dx dy arr &optional (result 0) (prev-height -1))
   (if (or (negative-integer-p x) (negative-integer-p y) (<= *map-size* x) (<= *map-size* y))
@@ -87,17 +91,13 @@
      (scenic-score x y 0 -1 arr)
      (scenic-score x y -1 0 arr)))
 
-(defun all-coords ()
-  (->> (iota *map-size*)
-       (mappend (λ (x) (mapcar (λ (y) (cons x y)) (iota *map-size*))))))
-
 (defun max-scenic-score (arr size)
   (let ((*map-size* size))
-    (->> (all-coords)
-	 (mapcar (λ (xy) (destructuring-bind (x . y) xy
+    (->> (map-product 'list (iota *map-size*) (iota *map-size*))
+	 (mapcar (λ (xy) (destructuring-bind (x y) xy
 			   (tree-scenic-score x y arr))))
 	 (apply #'max))))
 
 (defun solution-2 ()
-  (-> (read-input "day-8-input.txt" 99)
-      (max-scenic-score 99)))
+  (-> (read-input "day-8-input.txt" +default-map-size+)
+      (max-scenic-score +default-map-size+)))
