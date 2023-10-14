@@ -23,6 +23,7 @@
   (day 6 "Tuning Trouble")
   (day 7 "No Space Left On Device")
   (day 8 "Treetop Tree House")
+  (day 9 "Rope Bridge")
   )
 
 (defun main ()
