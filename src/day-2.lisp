@@ -32,9 +32,9 @@
 	      ((eq r (gethash l *lose*)) 0)
 	      (t 6)))))
 
-(series::defun parse-input (stream)
+(series::defun read-input ()
   (declare (optimizable-series-function))
-  (->> stream
+  (->> (scan-file (resource-file "day-2-input.txt") #'read-line)
        (map-fn t (λ (x) (->> x
 			     (str:words)
 			     (mapcar #'make-keyword)
@@ -56,12 +56,10 @@
 		       (:Z (gethash l *win*)))))))
 
 (defun solution-1 ()
-  (->> (scan-file (resource-file "day-2-input.txt") #'read-line)
-       (parse-input)
+  (->> (read-input)
        (total-score)))
 
 (defun solution-2 ()
-  (->> (scan-file (resource-file "day-2-input.txt") #'read-line)
-       (parse-input)
+  (->> (read-input)
        (choose-shape)
        (total-score)))
