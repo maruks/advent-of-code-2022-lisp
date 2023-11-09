@@ -24,6 +24,7 @@
   (day 7 "No Space Left On Device")
   (day 8 "Treetop Tree House")
   (day 9 "Rope Bridge")
+  (day 10 "Cathode-Ray Tube ")
   )
 
 (defun main ()
